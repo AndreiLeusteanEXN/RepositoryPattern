@@ -1,0 +1,16 @@
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\bin\Debug\net5.0\RepoPattern.exe
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\bin\Debug\net5.0\RepoPattern.deps.json
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\bin\Debug\net5.0\RepoPattern.runtimeconfig.json
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\bin\Debug\net5.0\RepoPattern.runtimeconfig.dev.json
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\bin\Debug\net5.0\RepoPattern.dll
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\bin\Debug\net5.0\ref\RepoPattern.dll
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\bin\Debug\net5.0\RepoPattern.pdb
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\obj\Debug\net5.0\RepoPattern.csproj.AssemblyReference.cache
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\obj\Debug\net5.0\RepoPattern.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\obj\Debug\net5.0\RepoPattern.AssemblyInfoInputs.cache
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\obj\Debug\net5.0\RepoPattern.AssemblyInfo.cs
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\obj\Debug\net5.0\RepoPattern.csproj.CoreCompileInputs.cache
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\obj\Debug\net5.0\RepoPattern.dll
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\obj\Debug\net5.0\ref\RepoPattern.dll
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\obj\Debug\net5.0\RepoPattern.pdb
+C:\Users\andrei.leustean\source\repos\RepoPattern\RepoPattern\obj\Debug\net5.0\RepoPattern.genruntimeconfig.cache
