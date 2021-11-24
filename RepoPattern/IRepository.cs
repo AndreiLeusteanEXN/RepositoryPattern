@@ -8,27 +8,26 @@ namespace RepoPattern
 {
     public interface IRepository
     {
-        //CRUD
-        void Insert(string title, string artist, int year, string genre, string recordLabel, bool owned, int sales);
-        void GetAll();
+        void Insert(Album albumToInsert);
 
-        void GetById(int id);
-        void GetByArtist(string artist);
-        void GetByYear(int year);
+        IEnumerable<Album> GetAll();
 
-        void GetByGenre(string genre);
+        IEnumerable<Album> GetById(int id);
 
-        void GetByRecordLabel(string rl);
-        void GetByOwned(bool owned);
+        IEnumerable<Album> GetByArtist(string artist);
 
+        IEnumerable<Album> GetByYear(int year);
 
-        void Update(int id, string title, string artist, int year, string genre, string recordLabel, bool owned, int sales);
+        IEnumerable<Album> GetByGenre(string genre);
+
+        IEnumerable<Album> GetByRecordLabel(string rl);
+
+        IEnumerable<Album> GetByOwned(bool owned);
+
+        void Update(int id, AlbumDTO albumUpdateData);
 
         void Delete(int id);
 
-        public void Save(string path);
-
-
-
+        public abstract void Save(string path);
     }
 }

@@ -6,7 +6,7 @@ namespace RepoPattern
     {
         public static void Main(string[] args)
         {
-            string path = @"..\..\..\albums.csv";
+            string path = @"..\..\..\";
             Menu menu = new Menu(path);
         }
     }

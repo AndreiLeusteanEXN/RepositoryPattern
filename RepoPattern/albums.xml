@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAlbum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <album>
+    <id>1</id>
+    <title>Deadline</title>
+    <artist>Rei</artist>
+    <year>2021</year>
+    <genre>Clam Dwon</genre>
+    <recordLabel>ExpertRecords</recordLabel>
+    <owned>false</owned>
+    <sales>15</sales>
+  </album>
+  <album>
+    <id>2</id>
+    <title>Progress</title>
+    <artist>Rei</artist>
+    <year>2021</year>
+    <genre>panic</genre>
+    <recordLabel>EXN</recordLabel>
+    <owned>true</owned>
+    <sales>1</sales>
+  </album>
+  <album>
+    <id>3</id>
+    <title>Unreachable</title>
+    <artist>Rei</artist>
+    <year>2022</year>
+    <genre>panic</genre>
+    <recordLabel>EXN</recordLabel>
+    <owned>true</owned>
+    <sales>1</sales>
+  </album>
+  <album>
+    <id>4</id>
+    <title>Life Starts Now</title>
+    <artist>Three Days Grace</artist>
+    <year>2009</year>
+    <genre>Rock</genre>
+    <recordLabel>Jive/Zomba</recordLabel>
+    <owned>false</owned>
+    <sales>79000</sales>
+  </album>
+  <album>
+    <id>5</id>
+    <title>One X</title>
+    <artist>Three Days Grace</artist>
+    <year>2006</year>
+    <genre>Rock</genre>
+    <recordLabel>Jive</recordLabel>
+    <owned>false</owned>
+    <sales>78000</sales>
+  </album>
+  <album>
+    <id>6</id>
+    <title>Manele Noi</title>
+    <artist>Cultura dacilor liberi</artist>
+    <year>2004</year>
+    <genre>Manele</genre>
+    <recordLabel>Patria suprema</recordLabel>
+    <owned>true</owned>
+    <sales>21000000</sales>
+  </album>
+  <album>
+    <id>7</id>
+    <title>Audio Secrecy</title>
+    <artist>Stone Sour</artist>
+    <year>2010</year>
+    <genre>Rock</genre>
+    <recordLabel>Roadrunner</recordLabel>
+    <owned>false</owned>
+    <sales>46000</sales>
+  </album>
+  <album>
+    <id>8</id>
+    <title>Mileniul III</title>
+    <artist>Trei Sud Est</artist>
+    <year>1999</year>
+    <genre>Chinuiesc</genre>
+    <recordLabel>Cat Music</recordLabel>
+    <owned>true</owned>
+    <sales>20000</sales>
+  </album>
+</ArrayOfAlbum>

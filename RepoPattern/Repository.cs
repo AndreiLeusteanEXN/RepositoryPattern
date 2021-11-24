@@ -3,210 +3,114 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 
 namespace RepoPattern
 {
-    public class Repository : IRepository
+    public abstract class Repository : IRepository
     {
+        //CRUD
 
-        private List<Album> albums;
-        string header = "id,title,artist,year,genre,recordLabel,owned,sales";
+        public List<Album> albums { get; set; }
+        public const string header = "id,title,artist,year,genre,recordLabel,owned,sales";
 
-        public Repository(string path)
+        public void Insert(Album albumToInsert)
         {
-            albums = new List<Album>();
-            //Warning: you are reading the code for the dumbest csv parser to ever exist
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    StringBuilder sb = new();
-                    string line=sr.ReadLine();
-                    //the first line is the header, so we skip this one and move to the second line
-                    while ((line=sr.ReadLine()) != null)
-                    {
-                        Album album = new();
-                        int i = 0;
-                        sb.Clear();
-                        while (line[i]!=',')
-                        {
-                            sb.Append(line[i++]);
-                        }
-                        album.id = int.Parse(sb.ToString());
-                        sb.Clear();
-
-                        while (line[++i]!= ',')
-                        {
-                            sb.Append(line[i]);
-                        }
-
-                        album.title = sb.ToString();
-                        sb.Clear();
-
-                        while (line[++i] != ',')
-                        {
-                            sb.Append(line[i]);
-                        }
-
-                        album.artist = sb.ToString();
-                        sb.Clear();
-
-                        while (line[++i] != ',')
-                        {
-                            sb.Append(line[i]);
-                        }
-
-                        album.year = int.Parse(sb.ToString());
-                        sb.Clear();
-
-                        while (line[++i] != ',')
-                        {
-                            sb.Append(line[i]);
-                        }
-
-                        album.genre = sb.ToString();
-                        sb.Clear();
-
-                        while (line[++i] != ',')
-                        {
-                            sb.Append(line[i]);
-                        }
-
-                        album.recordLabel = sb.ToString();
-                        sb.Clear();
-
-                        while (line[++i] != ',')
-                        {
-                            sb.Append(line[i]);
-                        }
-
-                        album.owned = bool.Parse(sb.ToString());
-                        sb.Clear();
-
-                        //String indexing starts at 0, therefore this loop will get the entire number of sales
-                        while (i<line.Length-1)
-                        {
-                            sb.Append(line[++i]);
-                        }
-
-
-                        album.sales = int.Parse(sb.ToString());
-
-                        albums.Add(album);
-                    }
-                }
-            }
+            int id = albums.Last().Id;
+            albumToInsert.Id = ++id;
+            albums.Add(albumToInsert);
         }
 
-        void IRepository.Insert(string title, string artist, int year, string genre, string recordLabel, bool owned, int sales)
+        public IEnumerable<Album> GetById(int id)
         {
-            //insert a new song in the list - validation will be done at user input (MenuSupport class)
-            //get the last id and increment it for the element to be inserted
-            int id = albums.Last().id;
-            Album a = new();
-            a.id = ++id;
-            a.title = title;
-            a.artist = artist;
-            a.year = year;
-            a.genre = genre;
-            a.recordLabel = recordLabel;
-            a.owned = owned;
-            a.sales = sales;
-            albums.Add(a);
+            var query = albums.Where(a => a.Id == id);
+            return query;
         }
 
-        void IRepository.GetById(int id)
+        public IEnumerable<Album> GetAll()
         {
-            Album album = albums.Where(a => a.id == id).First();
-            Console.WriteLine($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-        }
-        void IRepository.GetAll()
-        {
-            foreach (var album in albums)
-            {
-                Console.WriteLine($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-            }
-            //get. getby, get all. get shit and print to console
+            return albums.Where(x => x.Id%1==0);
         }
 
-        void IRepository.GetByArtist(string artist)
+        public IEnumerable<Album> GetByArtist(string artist)
         {
             var query =
                 from album in albums
-                where album.artist == artist
+                where album.Artist == artist
                 select album;
-            foreach (var album in query)
-            {
-                Console.WriteLine($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-            }
+
+            return query;
         }
 
-        void IRepository.GetByYear(int year)
+        public IEnumerable<Album> GetByYear(int year)
         {
-            var query = albums.Where(a => a.year == year);
-            foreach (var album in query)
-            {
-                Console.WriteLine($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-            }
+            var query = albums.Where(a => a.Year == year);
+            return query;
         }
 
-        void IRepository.GetByGenre(string genre)
+        public IEnumerable<Album> GetByGenre(string genre)
         {
-            var query = albums.Where(a => a.genre == genre);
-            foreach (var album in query)
-            {
-                Console.WriteLine($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-            }
+            var query = albums.Where(a => a.Genre == genre);
+            return query;
         }
 
-        void IRepository.GetByRecordLabel(string rl)
+        public IEnumerable<Album> GetByRecordLabel(string rl)
         {
-            var query = albums.Where(a => a.recordLabel == rl);
-            foreach (var album in query)
-            {
-                Console.WriteLine($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-            }
+            var query = albums.Where(a => a.RecordLabel == rl);
+            return query;
         }
 
-        void IRepository.GetByOwned(bool owned)
+        public IEnumerable<Album> GetByOwned(bool owned)
         {
-            var query = albums.Where(a => a.owned == owned);
-            foreach (var album in query)
-            {
-                Console.WriteLine($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-            }
+            var query = albums.Where(a => a.Owned == owned);
+            return query;
         }
-        void IRepository.Update(int id, string title, string artist, int year, string genre, string recordLabel, bool owned, int sales)
+
+        //Existence of album is validated at user input
+        public void Update(int id, AlbumDTO albumUpdateData)
         {
-            //modify an entry based on id
             Album albumReference = new();
-            var query = albums.Where(a => a.id == id);
-            foreach (var album in query)
+            albumReference = albums.Where(a => a.Id == id).First();
+
+            if (albumUpdateData.Title != "")
             {
-                albumReference = album;
-                break;
+                albumReference.Title = albumUpdateData.Title;
             }
-            if (title != "")
-                albumReference.title = title;
-            if (artist != "")
-                albumReference.artist = artist;
-            if (year != -1)
-                albumReference.year = year;
-            if (genre != "")
-                albumReference.genre = genre;
-            if (recordLabel != "")
-            albumReference.recordLabel = recordLabel;
-            albumReference.owned = owned;
-            if (sales != -1)
-                albumReference.sales = sales;
+
+            if (albumUpdateData.Artist != "")
+            {
+                albumReference.Artist = albumUpdateData.Artist;
+            }
+
+            if (albumUpdateData.Year != -1)
+            {
+                albumReference.Year = albumUpdateData.Year;
+            }
+
+            if (albumUpdateData.Genre != "")
+            {
+                albumReference.Genre = albumUpdateData.Genre;
+
+            }
+
+            if (albumUpdateData.RecordLabel != "")
+            {
+                albumReference.RecordLabel = albumUpdateData.RecordLabel;
+            }
+
+            albumReference.Owned = albumUpdateData.Owned;
+
+            if (albumUpdateData.Sales != -1)
+            {
+                albumReference.Sales = albumUpdateData.Sales;
+            }
         }
 
-        void IRepository.Delete(int id)
+        //Validation is done at user input
+        public void Delete(int id)
         {
             foreach (Album album in albums)
             {
-                if (album.id==id)
+                if (album.Id == id)
                 {
                     albums.Remove(album);
                     Console.WriteLine("Album deleted!");
@@ -215,31 +119,6 @@ namespace RepoPattern
             }
         }
 
-        void IRepository.Save(string path)
-        {
-            //save memory content into the same file
-            //StreamWriter constructor with 1 argument overwrites the file by default
-            //string header = "id,title,artist,year,genre,recordLabel,owned,sales";
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(header);
-                var lastAlbum = albums.Last();
-                foreach (var album in albums)
-                {
-                    //There shall be no newline at the end of file
-                    if (album == lastAlbum)
-                    {
-                        sw.Write($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-                    }
-                    else sw.WriteLine($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-                }
-            }
-            Console.WriteLine(header);
-            foreach (var album in albums)
-            {
-                Console.WriteLine($"{album.id},{album.title},{album.artist},{album.year},{album.genre},{album.recordLabel},{album.owned},{album.sales}");
-            }
-
-        }
+        public abstract void Save(string path);
     }
 }

@@ -8,26 +8,58 @@ namespace RepoPattern
 {
     public class Menu
     {
-        IRepository repo;
+        Repository repo;
         MenuSupport ms;
         string saveLocation = @"..\..\..\salvation.csv";
-        //IRepository repo = new Repository(this.path);
-        //repo.Save(path);
+
         public Menu(string path)
         {
-            repo = new Repository(path);
+            bool validFile = false;
+            while (validFile == false)
+            {
+                Console.WriteLine("Insert filename:");
+                string fileName = Console.ReadLine();
+                string filePath = path + fileName;
+
+                if (fileName == "exit")
+                {
+                    System.Environment.Exit(0);
+                }
+
+                if (filePath.EndsWith(".csv"))
+                {
+                    repo = new RepositoryCSV(filePath);
+                    validFile = true;
+                }
+
+                else if (filePath.EndsWith(".xml"))
+                {
+                    repo = new RepositoryXML(filePath);
+                    validFile = true;
+                }
+
+                else
+                {
+                    Console.WriteLine("Unsupported file extension!\nInsert a valid filename, or type \"exit\" to quit the program");
+                }
+            }
+
             ms = new MenuSupport(repo);
             saveLocation = path;
             MenuController();
         }
+
         public void MenuController()
         {
             bool run = true;
+
             while (run)
             {
                 run = Show();
             }
+
         }
+
         public bool Show()
         {
             Console.Clear();
@@ -45,27 +77,26 @@ namespace RepoPattern
                 case "1":
                     ms.ShowAlbums();
                     return true;
+
                 case "2":
-                    //TODO: Validate input
                     ms.AddAlbum();
                     return true;
+
                 case "3":
-                    //TODO: Validate input
                     ms.UpdateAlbum();
                     return true;
+
                 case "4":
                     ms.DeleteAlbum();
                     return true;
+
                 case "5":
                     ms.SaveAlbum(saveLocation);
                     return true;
+
                 default:
-                    //save upon exit
-                    repo.Save(saveLocation);
                     return false;
             }
-
         }
-
     }
 }
